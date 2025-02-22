@@ -5,16 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In</title>
     <link rel="stylesheet" href="/src/output.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const video = document.getElementById("background-video");
+            video.playbackRate = 0.65; // ปรับความเร็ววิดีโอ (1 = ปกติ, 0.5 = ช้าลง, 2 = เร็วขึ้น)
+        });
+    </script>
+    <script>
+        function redirectToIndex(event) {
+            event.preventDefault(); // ป้องกันการส่งฟอร์ม
+            window.location.replace("../index.html"); // หรือ "./index.html" ถ้าอยู่โฟลเดอร์เดียวกัน
+        }
+ 
+    </script>
     
 </head>
-<body class="h-full bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+<body class="h-full flex items-center justify-center min-h-screen relative">
+    <!-- วิดีโอพื้นหลัง -->
+    <video id="background-video" class="absolute top-0 left-0 w-full h-full object-cover" autoplay loop muted>
+        <source src="../Image/71122-537102350_small.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+
+    <!-- กล่องล็อกอิน -->
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md relative z-10">
+        <!-- โลโก้และหัวข้อ -->
         <div class="text-center">
-            <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+            <img class="mx-auto h-12 w-auto" 
+                src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" 
+                alt="Your Company">
             <h2 class="mt-6 text-2xl font-bold text-gray-900">Sign in to your account</h2>
         </div>
-        
-        <form class="mt-6 space-y-4" action="#" method="POST">
+
+        <!-- ฟอร์มล็อกอิน -->
+        <form class="mt-6 space-y-4" onsubmit="redirectToIndex(event)">
+            <!-- อีเมล -->
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
                 <div class="border border-gray-500 rounded-lg p-2 shadow-md">
@@ -22,6 +48,7 @@
                 </div>
             </div>
             
+            <!-- รหัสผ่าน -->
             <div>
                 <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                 <div class="border border-gray-500 rounded-lg p-2 shadow-md">
@@ -29,13 +56,18 @@
                 </div>
             </div>
             
+            <!-- ลิงก์ลืมรหัสผ่าน -->
             <div class="flex items-center justify-between">
                 <a href="#" class="text-sm text-indigo-600 hover:underline">Forgot password?</a>
             </div>
             
-            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-500">Sign in</button>
+            <!-- ปุ่มเข้าสู่ระบบ -->
+            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-500">
+                Sign in
+            </button>
         </form>
         
+        <!-- ลิงก์สมัครสมาชิก -->
         <p class="mt-4 text-center text-sm text-gray-600">
             Not a member? <a href="#" class="text-indigo-600 hover:underline">Start a 14-day free trial</a>
         </p>
